@@ -1,0 +1,33 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Add or Update Student</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container mt-4 col-8">
+			<h2 >Direction Student</h2>
+			
+			<hr>
+			
+			<h4>Add or Update Student</h4>
+			
+			<form action="#" th:action="@{/api/save}" method="POST"
+											th:object="${student}">
+				
+				<input type="hidden" th:field="${student.id}">							
+				<input th:field="${student.firstName}" placeholder="First name"
+				 class="form-control col-4 mb-4 mt-4">
+				<input th:field="${student.lastName}" placeholder="Last name"
+				 class="form-control col-4 mb-4">
+				<input th:field="${student.email}" placeholder="Email"
+				 class="form-control col-4 mb-4">
+				
+				<button type="submit" class="btn btn-success">Submit</button>
+												
+			</form>
+			<hr>
+			<a th:href="@{/api/students}" class="btn btn-outline-dark"> Back</a>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Direction Student</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		
+	</head>
+	<body>
+		<div class="container col-8 mt-4">
+			<h2 class="mb-4">Student Direction</h2>
+			
+			<a th:href="@{showFormForAdd}" class="btn btn-primary mb-4" >Add student</a>
+			
+			<table class="table table-striped table-dark table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>First name</th>
+						<th>Last name</th>
+						<th>Email</th>
+						<th>Action</th>
+						<th>Detail</th>
+					</tr>
+					
+					<tr th:each="tempStudent : ${students}">
+						<td th:text="${tempStudent.id}"></td>
+						<td th:text="${tempStudent.firstName}"></td>
+						<td th:text="${tempStudent.lastName}"></td>
+						<td th:text="${tempStudent.email}"></td>
+						<td>
+						<a th:href="@{showFormForUpdate(studentId=${tempStudent.id})}" 
+						class="btn btn-success btn-sm" >Update</a>
+						<a th:href="@{delete(studentId=${tempStudent.id})}" 
+						class="btn btn btn-danger btn-sm" 
+						onclick="if(!(confirm('Are you sure you want delete this student?'))) return false">Delete</a>
+						
+						</td>
+						
+						<td><a th:href="@{moreForId(id=${tempStudent.id})}">more</a></td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</body>
+
+</html>
