@@ -23,6 +23,7 @@
 					</tr>
 					
 					<tr th:each="tempStudent : ${students}">
+					
 						<td th:text="${tempStudent.id}"></td>
 						<td th:text="${tempStudent.firstName}"></td>
 						<td th:text="${tempStudent.lastName}"></td>
@@ -36,7 +37,7 @@
 						
 						</td>
 						
-						<td><a th:href="@{moreForId(id=${tempStudent.id})}">more</a></td>
+						<td><a th:href="@{moreForId(id=${tempStudent.id})}"  class="btn btn-warning btn-sm">more</a></td>
 					</tr>
 				</thead>
 			</table>

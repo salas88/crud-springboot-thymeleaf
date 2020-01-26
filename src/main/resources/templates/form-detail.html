@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Change some Information</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>
+	
+	<body>
+		<div class="container col-8">
+			<h2 class="mt-4">Direction Student</h2>
+			<hr>
+			<h3>Detail about student</h3>
+			<hr>
+			<h4>Change some information</h4>
+			
+			
+			<form action="#" th:action="@{/api/details/save}" 
+										method="POST" th:object="${studentDetail}">
+			
+			<input type="hidden" th:field="*{id}">
+			<input th:field="*{city}"  class="form-control col-4 mb-4 mt-4">
+			<input th:field="*{trainingShema}"  class="form-control col-4 mb-4">
+			
+			<button type="submit" class="btn btn-success">Submit</button>
+			
+			</form>
+			
+		</div>
+		
+	</body>
+</html>

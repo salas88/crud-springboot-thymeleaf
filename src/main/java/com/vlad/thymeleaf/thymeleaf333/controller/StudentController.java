@@ -27,21 +27,6 @@ public class StudentController {
 	@Autowired
 	private IServiceDetail detail;
 
-	
-
-	@GetMapping("/moreForId")
-	public String getListDetail(@RequestParam("id")int theId, Model theModel) {
-		
-		
-		StudentDetail detail = iService.findById(theId).get().getStudentDetail();
-		
-		
-		theModel.addAttribute("detail", detail);
-		
-		return "details";
-	}
-
-	
 	@GetMapping("/students")
 	public String showListEmployees(Model theModel) {
 		
@@ -83,8 +68,41 @@ public class StudentController {
 		
 		iService.deleteById(theId);
 		return "redirect:/";
-		
 	}
+	
+	// add several methods for detail about student
+	
+	@GetMapping("/moreForId")
+	public String getListDetail(@RequestParam("id")int theId, Model theModel) {
+		
+		
+		StudentDetail detail = iService.findById(theId).get().getStudentDetail();
+		
+		
+		theModel.addAttribute("detail", detail);
+		
+		return "details";
+	}
+	
+	@GetMapping("/updateDetail")
+	public String updateDetail(@RequestParam("id")int theId, Model theModel) {
+		StudentDetail studentDetail = detail.findById(theId).get();
+		theModel.addAttribute("studentDetail", studentDetail);
+		return "form-detail";
+	}
+	
+	// update and return page for current student detail
+	
+	@PostMapping("/details/save")
+	public String saveUpdate(@ModelAttribute("studentDetail")StudentDetail theStudentDetail) {
+		detail.save(theStudentDetail);
+		
+		int theId = theStudentDetail.getId();
+		
+		return "redirect:/api/moreForId?id=" + theId;
+	}
+
+	
 
 	
 
