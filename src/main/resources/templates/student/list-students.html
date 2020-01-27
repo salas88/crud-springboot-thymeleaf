@@ -37,7 +37,23 @@
 						
 						</td>
 						
-						<td><a th:href="@{moreForId(id=${tempStudent.id})}"  class="btn btn-warning btn-sm">more</a></td>
+						
+						<td>
+						
+						<div th:if="${tempStudent.studentDetail != null}">
+						  	<a th:href="@{moreForId(id=${tempStudent.id})}"  class="btn btn-warning btn-sm">more</a>
+						</div>
+						<div th:if="${tempStudent.studentDetail == null}">
+								
+						  	<a th:href="@{createNewStudentDetailObject(id=${tempStudent.id})}"  class="btn btn-secondary btn-sm">Add</a>
+						  		
+						</div>
+						
+						
+								
+						
+						
+						</td>
 					</tr>
 				</thead>
 			</table>

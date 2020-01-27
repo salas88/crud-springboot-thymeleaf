@@ -25,7 +25,8 @@ public class StudentController {
 	private IService iService;
 	
 	@Autowired
-	private IServiceDetail detail;
+	private IServiceDetail IServiceDetail;
+	
 
 	@GetMapping("/students")
 	public String showListEmployees(Model theModel) {
@@ -70,38 +71,65 @@ public class StudentController {
 		return "redirect:/";
 	}
 	
+	
 	// add several methods for detail about student
 	
 	@GetMapping("/moreForId")
 	public String getListDetail(@RequestParam("id")int theId, Model theModel) {
 		
+		StudentDetail theStudentDetail = iService.findById(theId).get().getStudentDetail();
 		
-		StudentDetail detail = iService.findById(theId).get().getStudentDetail();
 		
+		theModel.addAttribute("detail", theStudentDetail);
 		
-		theModel.addAttribute("detail", detail);
-		
-		return "details";
+		return "detailsStudent/details";
 	}
+	
+	// show form for update StudentDetail
 	
 	@GetMapping("/updateDetail")
 	public String updateDetail(@RequestParam("id")int theId, Model theModel) {
-		StudentDetail studentDetail = detail.findById(theId).get();
+		StudentDetail studentDetail = IServiceDetail.findById(theId).get();
+		
 		theModel.addAttribute("studentDetail", studentDetail);
-		return "form-detail";
+		return "detailsStudent/form-detail";
 	}
 	
 	// update and return page for current student detail
 	
 	@PostMapping("/details/save")
 	public String saveUpdate(@ModelAttribute("studentDetail")StudentDetail theStudentDetail) {
-		detail.save(theStudentDetail);
 		
-		int theId = theStudentDetail.getId();
+		StudentDetail detail = IServiceDetail.findById(theStudentDetail.getId()).get();
+		int theId = detail.getStudent().getId();
 		
+		IServiceDetail.save(theStudentDetail);
+	
 		return "redirect:/api/moreForId?id=" + theId;
 	}
-
+	
+	
+	// if student detait not set , create new and add 
+	
+	@GetMapping("/createNewStudentDetailObject")
+	public String createNewDetailObject(Model theModel, @RequestParam("id")int theId) {
+		
+		StudentDetail studentDetail = new StudentDetail();
+		
+		theModel.addAttribute("theStudentDetail", studentDetail);
+		
+		
+		return "detailsStudent/createNewStudentDetail";
+	}
+	
+	@PostMapping("/detail/save")
+	public String createAndSetNewStudentDetailObject(@ModelAttribute("theStudentDetail")
+				StudentDetail theStudentDetail) {
+		
+		
+		
+		return "redirect:/api/moreForId?id=";
+	}
 	
 
 	

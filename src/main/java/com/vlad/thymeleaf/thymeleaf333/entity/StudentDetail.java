@@ -1,10 +1,12 @@
 package com.vlad.thymeleaf.thymeleaf333.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +22,12 @@ public class StudentDetail {
 	@Column(name="training_shema")
 	private String trainingShema;
 	
+	@OneToOne(mappedBy="studentDetail", cascade= {CascadeType.MERGE, CascadeType.DETACH,
+										          CascadeType.PERSIST, CascadeType.REFRESH})	
+	private Student student;
+	
 	public StudentDetail() {}
+	
 
 	public StudentDetail(String city, String trainingShema) {
 		this.city = city;
@@ -50,6 +57,14 @@ public class StudentDetail {
 	public void setTrainingShema(String trainingShema) {
 		this.trainingShema = trainingShema;
 	}
-	
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
 	
 }

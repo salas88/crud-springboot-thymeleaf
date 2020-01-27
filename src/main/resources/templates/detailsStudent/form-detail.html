@@ -18,8 +18,8 @@
 										method="POST" th:object="${studentDetail}">
 			
 			<input type="hidden" th:field="*{id}">
-			<input th:field="*{city}"  class="form-control col-4 mb-4 mt-4">
-			<input th:field="*{trainingShema}"  class="form-control col-4 mb-4">
+			<input th:field="*{city}"  class="form-control col-4 mb-4 mt-4" placeholder="City">
+			<input th:field="*{trainingShema}"  class="form-control col-4 mb-4" placeholder="Traning Shema">
 			
 			<button type="submit" class="btn btn-success">Submit</button>
 			
