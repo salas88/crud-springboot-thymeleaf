@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vlad.thymeleaf.thymeleaf333.daojpa.CourseDao;
 import com.vlad.thymeleaf.thymeleaf333.entity.Course;
 
+@Service
 public class CourseImpl implements ICourse{
 	
 	@Autowired
