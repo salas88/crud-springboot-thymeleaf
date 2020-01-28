@@ -17,15 +17,22 @@
 						<th>Review</th>
 					</tr>
 				</thead>
+				
 					<tr th:each="tempCourse : ${courses}">
 						<td th:text="${tempCourse.id}"></td>
 						<td th:text="${tempCourse.title}"></td>
 						
+						
 						<td>
-						  	<a th:href="@{reviewForId(courseId=${tempCourse.id})}"  class="btn btn-warning btn-sm">more</a>
-						</div>
 						
-						
+							<div th:if="${tempCourse.reviews != null}">
+							 	<a th:href="@{reviewForId(courseId=${tempCourse.id})}"  class="btn btn-warning btn-sm">more</a>
+							 </div>
+							 
+							 <div th:if="${tempCourse.reviews == null}">
+							 	<a th:href="@{createReview(courseId=${tempCourse.id})}"  class="btn btn-secondary btn-sm">Add</a>
+							 </div>
+						  
 						</td>
 					</tr>
 					

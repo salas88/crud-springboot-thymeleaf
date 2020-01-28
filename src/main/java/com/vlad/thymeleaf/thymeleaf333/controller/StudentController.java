@@ -80,6 +80,11 @@ public class StudentController {
 		
 		StudentDetail theStudentDetail = iService.findById(theId).get().getStudentDetail();
 		
+
+		Student theStudent = iService.findById(theId).get();
+		
+		theModel.addAttribute("theStudent", theStudent);
+		
 		
 		theModel.addAttribute("detail", theStudentDetail);
 		
