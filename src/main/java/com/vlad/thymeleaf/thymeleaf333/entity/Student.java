@@ -29,7 +29,7 @@ public class Student {
 	
 	private String email;
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="student_detail_id")
 	private StudentDetail studentDetail;
 	

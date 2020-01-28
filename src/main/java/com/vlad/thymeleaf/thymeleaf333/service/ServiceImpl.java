@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.vlad.thymeleaf.thymeleaf333.daojpa.JpaDao;
 import com.vlad.thymeleaf.thymeleaf333.entity.Student;
+import com.vlad.thymeleaf.thymeleaf333.entity.StudentDetail;
 
 @Service
 public class ServiceImpl implements IService {
 	
 	private JpaDao jpaDao;
+
 	
 	@Autowired
 	public ServiceImpl(JpaDao theJpaDao) {
@@ -42,5 +44,7 @@ public class ServiceImpl implements IService {
 		jpaDao.deleteById(theId);
 		
 	}
+
+	
 
 }

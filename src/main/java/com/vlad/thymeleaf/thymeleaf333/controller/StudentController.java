@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -46,7 +47,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("/save")
-	public String savenewStudent(Model theModel, @ModelAttribute("student") Student theStudent) {
+	public String savenewStudent(@ModelAttribute("student") Student theStudent) {
 		
 		iService.save(theStudent);
 		
@@ -109,27 +110,25 @@ public class StudentController {
 	}
 	
 	
-	// if student detait not set , create new and add 
+	// if student detail not set , create new and add 
 	
 	@GetMapping("/createNewStudentDetailObject")
 	public String createNewDetailObject(Model theModel, @RequestParam("id")int theId) {
 		
 		StudentDetail studentDetail = new StudentDetail();
 		
-		theModel.addAttribute("theStudentDetail", studentDetail);
+		Student theStudent = iService.findById(theId).get();
+		
+		theStudent.setStudentDetail(new StudentDetail());
+		iService.save(theStudent);
+		
+		theModel.addAttribute("studentDetail", theStudent.getStudentDetail());
 		
 		
-		return "detailsStudent/createNewStudentDetail";
+		return "redirect:/api/moreForId?id=" +theStudent.getId();
 	}
 	
-	@PostMapping("/detail/save")
-	public String createAndSetNewStudentDetailObject(@ModelAttribute("theStudentDetail")
-				StudentDetail theStudentDetail) {
-		
-		
-		
-		return "redirect:/api/moreForId?id=";
-	}
+	
 	
 
 	

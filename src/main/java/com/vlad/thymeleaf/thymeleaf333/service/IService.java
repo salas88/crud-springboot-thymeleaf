@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.vlad.thymeleaf.thymeleaf333.entity.Student;
+import com.vlad.thymeleaf.thymeleaf333.entity.StudentDetail;
 
 public interface IService {
 	
@@ -11,5 +12,6 @@ public interface IService {
 	Optional<Student> findById(int theId);
 	void save(Student theStudent);
 	void deleteById(int theId);
+	
 
 }
